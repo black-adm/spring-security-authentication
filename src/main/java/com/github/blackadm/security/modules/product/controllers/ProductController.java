@@ -1,12 +1,12 @@
 package com.github.blackadm.security.modules.product.controllers;
 
 import com.github.blackadm.security.modules.product.entities.Product;
+import com.github.blackadm.security.modules.product.services.CreateProductService;
 import com.github.blackadm.security.modules.product.services.ListProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.http.HttpStatus;
 import java.util.List;
 
 @RestController
@@ -16,8 +16,16 @@ public class ProductController {
     @Autowired
     ListProductService listProductService;
 
+    @Autowired
+    CreateProductService createProductService;
+
     @GetMapping
     public List<Product> list() {
         return listProductService.listAll();
+    }
+
+    @PostMapping
+    public ResponseEntity<Product> create(@RequestBody Product product) {
+        return ResponseEntity.status(HttpStatus.OK).body(createProductService.create(product));
     }
 }
