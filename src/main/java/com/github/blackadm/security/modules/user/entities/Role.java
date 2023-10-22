@@ -1,6 +1,8 @@
-package com.github.blackadm.security.modules.product.entities;
+package com.github.blackadm.security.modules.user.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,9 +11,11 @@ import javax.persistence.Table;
 import java.util.UUID;
 
 @Entity
-@Table(name = "products")
+@Table(name = "roles")
 @Data
-public class Product {
+@NoArgsConstructor
+@AllArgsConstructor
+public class Role {
 
     @Id
     @GeneratedValue
@@ -19,7 +23,8 @@ public class Product {
 
     private String name;
 
-    private String description;
-
-    private String sku;
+    public Role(UUID id) {
+        this.id = id;
+    }
 }
+
