@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/clients")
+@RequestMapping("/users")
 public class UserController {
 
     @Autowired
@@ -28,16 +28,12 @@ public class UserController {
         return userRepository.findAll();
     }
 
-    @GetMapping("/{id}")
-    public User findById(String id) {
-        return userRepository.findById(id);
-    }
-
-    @PostMapping("/create")
+    @PostMapping("/signUp")
     public User create(@RequestBody User user) {
         return createUserService.execute(user);
     }
 
+    @PostMapping("/role")
     public User role(@RequestBody CreateUserRoleDto createUserRoleDto) {
         return createRoleUserService.execute(createUserRoleDto);
     }
