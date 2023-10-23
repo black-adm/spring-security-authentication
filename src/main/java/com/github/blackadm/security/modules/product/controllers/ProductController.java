@@ -5,6 +5,7 @@ import com.github.blackadm.security.modules.product.services.CreateProductServic
 import com.github.blackadm.security.modules.product.services.ListProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
 import java.util.List;
@@ -19,6 +20,7 @@ public class ProductController {
     @Autowired
     CreateProductService createProductService;
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping
     public List<Product> list() {
         return listProductService.listAll();

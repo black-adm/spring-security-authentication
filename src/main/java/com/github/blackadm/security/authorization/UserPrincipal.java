@@ -1,4 +1,4 @@
-package com.github.blackadm.security.authentication;
+package com.github.blackadm.security.authorization;
 
 import com.github.blackadm.security.modules.user.entities.User;
 import org.springframework.security.core.GrantedAuthority;
@@ -14,7 +14,7 @@ public class UserPrincipal implements UserDetails {
 
     private final String username;
     private final String password;
-    private Collection<? extends GrantedAuthority> authorities;
+    private final Collection<? extends GrantedAuthority> authorities;
 
     public UserPrincipal(User user) {
         this.username = user.getUsername();
